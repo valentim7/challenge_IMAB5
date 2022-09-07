@@ -4,7 +4,8 @@ from models import indices
 app = Flask(__name__)
 
 
-@app.route('/api/v1/cota', methods=['GET'])
+# route decorator to GET the IMA-B 5 index
+@app.route('/api/v1/cota/', methods=['GET'])
 def get_daily_ima_b5():
     result = indices.get_index()
     return result
