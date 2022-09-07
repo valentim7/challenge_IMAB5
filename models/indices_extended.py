@@ -49,7 +49,7 @@ def find_attributes(url):
 # function to communicate with the API
 def get_index(index_name=None):
     json_object = find_attributes(URL)
-    # if index name is matches one of our indices, return only the "quote" and "date" for that specific index name.
+    # if index name matches one of our indices, return only the "quote" and "date" for that specific index name.
     if index_name is not None:
         for row in json_object:
             if list(row.keys())[0] == index_name:
