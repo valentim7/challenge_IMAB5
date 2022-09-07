@@ -1,12 +1,12 @@
 from flask import Flask
-from markupsafe import escape
 from models import indices
+
 app = Flask(__name__)
 
 
-@app.route('/api/v1/cota/<index>', methods=['GET'])
-def index_do_dia(index):
-    result = indices.get_index(index)
+@app.route('/api/v1/cota', methods=['GET'])
+def get_daily_ima_b5():
+    result = indices.get_index()
     return result
 
 
