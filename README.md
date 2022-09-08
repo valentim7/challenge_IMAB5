@@ -3,10 +3,10 @@
 ### 1. The challenge
 
 This challenge is part of a data engineering hiring process. The goal was to create an API and a web-scrapper for the ANBIMA 
-website, where we should come up with a way to provide both the index and its corresponding date through the following endpoint 
-and format:
+website, where we should come up with a way to provide both the IMA-B 5 index and its corresponding date through the following 
+endpoint and format:
 
-``endpoint: /api/vi/cota (GET)``
+``Endpoint: /api/vi/cota (GET)``
 ```
 [
   {
@@ -21,7 +21,7 @@ and format:
 - Programming Language: `Python 3.10`
 - IDE: `PyCharm 2022.2`
 - API Framework: `Flask 2.2.2`
-- Web-scrapping: `bs4 & requests`
+- Web-scrapping: `Requests & bs4`
 - API Testing: `Postman`
 
 ### 3. How to run this project?
@@ -40,7 +40,7 @@ Open the terminal, making sure to be in the correct path for the intended projec
 ```
 #### 2. Add all files from this repository to your project folder.
 
-Once step 2 is done, install the necessary packages from the `requirements.txt` file. This can be performed through the command 
+Install the necessary packages from the `requirements.txt` file. This can be performed through the command 
 below:
 
 ```
@@ -51,7 +51,7 @@ below:
 
 The `run.py` file is the main script to initialize our flask API. There the HTTP method `GET` was created through the decorator
 `@app.route()`, where both the endpoint and method were specified. Through the `app.run()` the script starts running the
-local server which, by default, is usually `port=5000`. Pay attention to the http address that will appear on the console
+local server which, by default, is usually at `port=5000`. Pay attention to the HTTP address that will appear on the console
 after running the `run.py` script, this address will be added along with the endpoint for testing in the next step. In brief, 
 we should see a message like this:
 
@@ -80,15 +80,15 @@ After downloading and loging into Postman, we can send the `GET` request through
    - `TYPE = default`
    - `INITIAL VALUE = localhost:5000`
    - `CURRENT VALUE = localhost:5000`
-5) Under the `GET` request with the environment created type: `http://{{server}}/api/v1/cota`
-6) HIT `Send`
+5) Under the `GET` request, once the environment is created, type: `http://{{server}}/api/v1/cota`
+6) Hit `Send`
 7) Check the status code returned by the API (we should see 200 OK) along with the output in a `.JSON` format.
 
 Here is the output obtained through this process:
 
 <img width="1439" alt="Screen Shot 2022-09-07 at 10 55 16 PM" src="https://user-images.githubusercontent.com/101138915/189016435-e5154939-61cd-474b-8a4b-b088f1dc6a92.png">
 
-### 5. Challenge Extension
+### 4. Challenge Extension
 
 For the purpose of extending the approach aforementioned, two other scripts were created:
 `run_extended.py` and `indices_extended.py`. Those two files follow the same logic we already discussed for `run.py` and
@@ -96,7 +96,7 @@ For the purpose of extending the approach aforementioned, two other scripts were
 
 #### 1. run_extended.py
 
-For this script two routes were added with http method of the type `GET`. The first one follows the same endpoint we are already familiarized with: `/api/v1/cota`.
+For this script two routes were added with the HTTP method of the type `GET`. The first one follows the same endpoint we are already familiarized with: `/api/v1/cota`.
 However, through the changes in `indices_extended.py`, if we run our API through this endpoint, we will obtain not only the
 IMA-B 5 index from the ANBIMA website, but also all the other ones, namely:
 
@@ -108,7 +108,7 @@ index_list = ['IRF-M 1', 'IRF-M 1+', 'IRF-M', 'IMA-B 5', 'IMA-B 5+', 'IMA-B', 'I
 The second route, on that matter, allows us to specify the index we want to retrieve. For instance, after running the 
 `run_extended.py` script and sending a `GET` request through the API instance: `http://{{server}}/api/v1/cota/IMA-B 5`,
 we are able to attain the same results we achieved in the last session. Yet, the process can be repeated for any index from the
-ANBIMA website. If we type an index/address that is not contained in my index_list, we will get an error message suggesting
+ANBIMA website. If we type an index/endpoint that is not contained in my index_list, we will get an error message suggesting
 us the available options.
 
 #### 2. indices_extended.py
@@ -116,9 +116,9 @@ us the available options.
 This script takes an index list for the available indices from the ANBIMA website. Following the same approach presented
 for the `indices.py` file, the web-scrapper helper function loops through every index, adds the data to a list of dictionaries,
 and returns us a `.JSON` file with the results. The function `get_index()`, now verifies if an index name was specified,
-if true and this name matches one of the indices in the list, the function returns only the "quote" and "date" for the 
-specific index name. If the index name is not provided, a general json file with all indices provided by the ANBIMA website
-is returned.
+if true and this name matches one of the indices in the list, the function returns only the "quote" and "date" for that 
+specific index name. If the index name is not provided, a general .JSON file with all indices provided by the ANBIMA website
+is returned, just as already explained.
 
 Here is the outcome for the first route:
 
@@ -139,6 +139,6 @@ Here are examples of the outputs for the second route:
 <img width="1437" alt="Screen Shot 2022-09-07 at 11 38 12 PM" src="https://user-images.githubusercontent.com/101138915/189021818-9b6a48b8-8cf6-461a-9c6f-e5159bb1f789.png">
 
 
-### 6. Greetings
+### 5. Greetings
 
 Thank you for your time to review this entire project!
