@@ -44,12 +44,49 @@ Once step 2 is done, install the necessary packages from the `requirements.txt` 
 command below:
 
 ```
-pip install -r /path/to/requirements.txt
+1. pip install -r /path/to/requirements.txt
 ```
 
 #### 3. Run the `run.py` file
 
+The `run.py` file is the main script to initialize our flask API. There the HTTP method `GET` was created through the decorator
+`@app.route()`, where both the endpoint and method were specified. Through the `app.run()` the script starts running the
+local server which, by default, is usually `port=5000`. Pay attention to the http address that will appear on the console
+after running the `run.py` script, this address will be added along with the endpoint for testing in the next step. In
+brief, we should see a message like this:
+
+```
+ * Serving Flask app 'run'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+```
+
+`run.py` inherits from `indices.py` the function `get_index()`. This function makes use of a helper function to perform
+web-scrapping in the ANBIMA website. The comments on the script already explain in detail the steps of this process but,
+in general, the script takes advantage of the daily updates to the XML file address in the website to retrieve the IMA-B 5 
+index. After parsing the url address through the `requests` library, `BeautifulSoup` was used to traverse the XML tree and 
+attain the necessary data. Everything was added to a dictionary list which, in turn, was converted to a `.JSON` format.
+
 #### 4. Open postman and send a `GET` request through the `api/v1/cota` endpoint
+
+After downloading and loging into Postman, we can send the `GET` request through the steps below:
+
+1) Select `Collections` and create a new collection through the `+` sign
+2) Add a `request` and select `GET` from the dropdown 
+3) Select `Environments` and create a new environment through the `+` sign
+4) Type the entry point of the API instance and name it to a variable such as:
+   - `VARIABLE = Server`
+   - `TYPE = default`
+   - `INITIAL VALUE = localhost:5000`
+   - `CURRENT VALUE = localhost:5000`
+5) Under the `GET` request with the environment created type: `http://{{server}}/api/v1/cota`
+6) HIT `Send`
+7) Check the status code returned by the API (we should see 200 OK) along with the output in a `.JSON` format.
+
+Here is the output obtained through this process:
+
+<img width="1439" alt="Screen Shot 2022-09-07 at 10 55 16 PM" src="https://user-images.githubusercontent.com/101138915/189016435-e5154939-61cd-474b-8a4b-b088f1dc6a92.png">
 
 ### 5. Challenge Extension
 
