@@ -27,12 +27,28 @@ following endpoint and format:
 ### 3. How to run this project?
 
 The first and one of the easiest ways to get the results of this project running is to have Python and an IDE, like 
-PyCharm, installed on our computer. Secondly, we also need an API platform, like Postman, to test our API outcome. Once
+PyCharm, installed on our computer. Secondly, we also need an API platform, like Postman, to test our API outcome. Once 
 those requirements are met, we can proceed with the following steps:
 
 #### 1. Create a virtual environment
-#### 2. Install the necessary packages from the `requirements.txt` file in this repository.
+Open the terminal, making sure to be in the correct path for the intended project and,
+in turn, type:
+```
+1. pip install virtualenv
+2. virtualenv env
+3. source env/bin/activate
+```
+#### 2. Add all files from this repository to your project folder.
+
+Once step 2 is done, install the necessary packages from the `requirements.txt` file. This can be performed through the 
+command below:
+
+```
+pip install -r /path/to/requirements.txt
+```
+
 #### 3. Run the `run.py` file
+
 #### 4. Open postman and send a `GET` request through the `api/v1/cota` endpoint
 
 ### 5. Challenge Extension
