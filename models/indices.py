@@ -6,6 +6,7 @@ from flask import jsonify
 # base URL for the web-scrapping
 URL = "https://www.anbima.com.br/informacoes/ima/arqs/ima_completo.xml"
 
+
 # Creating helper function to perform the web-scrapping
 def find_attributes(url):
 
